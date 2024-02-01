@@ -7,11 +7,20 @@
 </head>
 <body>
     <h1>Formulario de creación de juegos</h1>
-    <form action="">
+    <p><a href="{{route('games')}}">Lista de juegos</a></p>
+    <form action="{{route('createVideogame')}}" method="POST">
+        @csrf
         <input type="text" name="name_game" placeholder="Nombre del videojuego">
-        <select name="categoria">
-            <option value="deportes">Deportes</option>
-            <option value="accion">Acción</option>
+        <select name="category_id">
+            @foreach($categories as $category)
+            <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+        <select name="active">
+           
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+            
         </select>
         <input type="submit" value="Enviar">
     </form>
