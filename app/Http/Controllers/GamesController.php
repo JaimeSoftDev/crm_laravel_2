@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Videogame;
 use App\Models\Category;
+use App\Http\Requests\StoreVideogame;
 
 class GamesController extends Controller
 {
@@ -25,7 +26,9 @@ class GamesController extends Controller
                             'fecha'=>$date,]);
     }
 
-    public function storeVideogame(Request $request){
+    public function storeVideogame(StoreVideogame $request){
+
+
         $game = new Videogame;
         $game->name=$request->name_game;
         $game->category_id=$request->category_id;
@@ -43,6 +46,11 @@ class GamesController extends Controller
     }
 
     public function updateVideogame(Request $request){
+        $request->validate([
+            'name_game'=>'required|min:5',
+
+        ]);
+
         $game = Videogame::find($request->game_id);
         $game->name=$request->game_name;
         $game->category_id=$request->category_id;
