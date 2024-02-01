@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::post('/games/updateVideogame', [GamesController::class,'updateVideogame']
 
 //Ruta que elimina un juego de la BD
 Route::get('/delete/{game_id}/', [GamesController::class,'delete'])->name('deleteGame');
+
+Route::resource('categories', CategoryController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
