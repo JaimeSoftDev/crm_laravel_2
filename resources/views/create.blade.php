@@ -10,10 +10,10 @@
     <p><a href="{{route('games')}}">Lista de juegos</a></p>
     <form action="{{route('createVideogame')}}" method="POST">
         @csrf
-        @error('name_game')
+        @error('name')
         {{$message}} <br>
         @enderror
-        <input type="text" name="name_game" placeholder="Nombre del videojuego">
+        <input type="text" name="name" placeholder="Nombre del videojuego">
         
         <select name="category_id">
             @foreach($categories as $category)

@@ -11,7 +11,10 @@
     <form action="{{route('updateVideogame')}}" method="POST">
         @csrf
         <input type="hidden" name="game_id" value="{{$game->id}}">
-        <input type="text" name="game_name" placeholder="Nombre del videojuego" value="{{$game->name}}">
+        @error('name')
+        {{$message}} <br>
+        @enderror
+        <input type="text" name="name" placeholder="Nombre del videojuego" value="{{$game->name}}">
         <select name="category_id">
             @foreach($categories as $category)
             <option value="{{$category->id}}" @if($category->id==$game->category_id) selected @endif>{{$category->name}}</option>

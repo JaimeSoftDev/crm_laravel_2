@@ -27,13 +27,8 @@ class GamesController extends Controller
     }
 
     public function storeVideogame(StoreVideogame $request){
-
-
-        $game = new Videogame;
-        $game->name=$request->name_game;
-        $game->category_id=$request->category_id;
-        $game->active=$request->active;
-        $game->save();
+        
+        Videogame::create($request->all());
 
         return redirect()->route('games');
     }
@@ -47,12 +42,12 @@ class GamesController extends Controller
 
     public function updateVideogame(Request $request){
         $request->validate([
-            'name_game'=>'required|min:5',
+            'name'=>'required|min:5',
 
         ]);
-
+        
         $game = Videogame::find($request->game_id);
-        $game->name=$request->game_name;
+        $game->name=$request->name;
         $game->category_id=$request->category_id;
         $game->active=$request->active;
         $game->save();
